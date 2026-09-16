@@ -1,5 +1,6 @@
 # Jadwal Salat & Kiblat
 
+![CI](https://github.com/naufalfalah/pengingat-salat-pwa/actions/workflows/ci.yml/badge.svg)
 ![Vue 3](https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vue.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![PWA](https://img.shields.io/badge/PWA-offline--first-5BB4E5?logo=googlechrome&logoColor=white)
@@ -88,9 +89,9 @@ This project has no environment variables — by design. There is no backend, no
 
 ### Deployment
 
-The app is a static build (`npm run build` → `/dist`) and deploys to any static host (Netlify, Vercel, GitHub Pages, etc.). No host-specific config is checked into this repo yet.
+The app is a static build (`npm run build` → `/dist`) and deploys to any static host (Netlify, Vercel, Cloudflare Pages/Workers, GitHub Pages, etc.). It's currently live on Cloudflare Workers at [pengingat-salat-pwa.naufalfallah.workers.dev](https://pengingat-salat-pwa.naufalfallah.workers.dev).
 
-One thing to configure on whichever host you use: serve `sw.js` with `Cache-Control: no-cache`, so browsers always fetch the latest Service Worker version and Workbox's `autoUpdate` registration can pick up new deploys immediately — otherwise a cached `sw.js` can pin a user to a stale app shell.
+`public/_headers` already configures the one thing that matters on whichever host you use: it serves `sw.js` with `Cache-Control: no-cache`, so browsers always fetch the latest Service Worker version and Workbox's `autoUpdate` registration can pick up new deploys immediately — otherwise a cached `sw.js` can pin a user to a stale app shell. The `_headers` file convention is read natively by Netlify and Cloudflare Pages/Workers; other static hosts need the equivalent header set through their own config.
 
 ## Key Technical Decisions
 
@@ -118,7 +119,11 @@ One thing to configure on whichever host you use: serve `sw.js` with `Cache-Cont
 
 ## Testing
 
-No automated test suite is present in this codebase. The project was validated through:
+```bash
+npm run test       # Vitest — unit tests, runs once and exits
+```
+
+Unit tests cover the pure-math parts of the composables — currently `useQibla`'s great-circle bearing calculation, including its reactivity to changing coordinates. Anything touching the DOM, sensors, or the Service Worker lifecycle is validated manually instead:
 
 - Manual device testing on Android (Chrome) and iOS (Safari)
 - Lighthouse PWA audit (requires HTTPS deployment — run via Netlify/Vercel preview URL)
