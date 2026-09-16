@@ -1,6 +1,6 @@
 # Jadwal Salat & Kiblat
 
-![CI](https://github.com/naufalfalah/pengingat-salat-pwa/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/naufalfalah/jadwal-salat-dan-kiblat/actions/workflows/ci.yml/badge.svg)
 ![Vue 3](https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vue.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![PWA](https://img.shields.io/badge/PWA-offline--first-5BB4E5?logo=googlechrome&logoColor=white)
@@ -62,8 +62,8 @@ The Service Worker (built from `src/sw.js` via Workbox `injectManifest`) precach
 ### Installation
 
 ```bash
-git clone https://github.com/naufalfallah/pengingat-salat-pwa.git
-cd pengingat-salat-pwa
+git clone https://github.com/naufalfalah/jadwal-salat-dan-kiblat.git
+cd jadwal-salat-dan-kiblat
 npm install
 ```
 
@@ -89,7 +89,7 @@ This project has no environment variables — by design. There is no backend, no
 
 ### Deployment
 
-The app is a static build (`npm run build` → `/dist`) and deploys to any static host (Netlify, Vercel, Cloudflare Pages/Workers, GitHub Pages, etc.). It's currently live on Cloudflare Workers at [pengingat-salat-pwa.naufalfallah.workers.dev](https://pengingat-salat-pwa.naufalfallah.workers.dev).
+The app is a static build (`npm run build` → `/dist`) and deploys to any static host (Netlify, Vercel, Cloudflare Pages/Workers, GitHub Pages, etc.). It's currently live on Cloudflare Workers at [jadwal-salat-dan-kiblat.naufalfallah.workers.dev](https://jadwal-salat-dan-kiblat.naufalfallah.workers.dev).
 
 `public/_headers` already configures the one thing that matters on whichever host you use: it serves `sw.js` with `Cache-Control: no-cache`, so browsers always fetch the latest Service Worker version and Workbox's `autoUpdate` registration can pick up new deploys immediately — otherwise a cached `sw.js` can pin a user to a stale app shell. The `_headers` file convention is read natively by Netlify and Cloudflare Pages/Workers; other static hosts need the equivalent header set through their own config.
 
