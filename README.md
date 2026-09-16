@@ -119,7 +119,11 @@ The app is a static build (`npm run build` → `/dist`) and deploys to any stati
 
 ## Testing
 
-No automated test suite is present in this codebase. The project was validated through:
+```bash
+npm run test       # Vitest — unit tests, runs once and exits
+```
+
+Unit tests cover the pure-math parts of the composables — currently `useQibla`'s great-circle bearing calculation, including its reactivity to changing coordinates. Anything touching the DOM, sensors, or the Service Worker lifecycle is validated manually instead:
 
 - Manual device testing on Android (Chrome) and iOS (Safari)
 - Lighthouse PWA audit (requires HTTPS deployment — run via Netlify/Vercel preview URL)
